@@ -1,0 +1,93 @@
+{% extends "base.html" %} {% block content %}
+
+
+
+<div class="container">
+    <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-top: 20px;">
+        <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">DemAffl</th>
+            <th scope="col">DemAge</th>
+            <th scope="col">DemClusterGroup</th>
+            <th scope="col">DemGender</th>
+            <th scope="col">DemReg</th>
+            <th scope="col">DemTVReg</th>
+            <th scope="col">LoyalClass</th>
+            <th scope="col">LoyalSpend</th>
+            <th scope="col">LoyalTime</th>
+            <th scope="col">TargetBuy</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data1 in data_original %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ data1.ID }}</td>
+            <td>{{ data1.DemAffl }}</td>
+            <td>{{ data1.DemAge }}</td>
+            <td>{{ data1.DemClusterGroup }}</td>
+            <td>{{ data1.DemGender }}</td>
+            <td>{{ data1.DemReg }}</td>
+            <td>{{ data1.DemTVReg }}</td>
+            <td>{{ data1.LoyalClass }}</td>
+            <td>{{ data1.LoyalSpend }}</td>
+            <td>{{ data1.LoyalTime }}</td>
+            <td>{{ data1.TargetBuy }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+
+<br>
+<div class='container' > 
+    
+<h3>DataFrame after Coverting category to numeric</h3>
+
+</div>
+<div class="container">
+    <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-top: 20px;">
+        <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">DemAffl</th>
+            <th scope="col">DemAge</th>
+            <th scope="col">DemClusterGroup</th>
+            <th scope="col">DemGender</th>
+            <th scope="col">DemReg</th>
+            <th scope="col">DemTVReg</th>
+            <th scope="col">LoyalClass</th>
+            <th scope="col">LoyalSpend</th>
+            <th scope="col">LoyalTime</th>
+            <th scope="col">TargetBuy</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data1 in data_converted %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ data1.ID }}</td>
+            <td>{{ data1.DemAffl }}</td>
+            <td>{{ data1.DemAge }}</td>
+            <td>{{ data1.DemClusterGroup }}</td>
+            <td>{{ data1.DemGender }}</td>
+            <td>{{ data1.DemReg }}</td>
+            <td>{{ data1.DemTVReg }}</td>
+            <td>{{ data1.LoyalClass }}</td>
+            <td>{{ data1.LoyalSpend }}</td>
+            <td>{{ data1.LoyalTime }}</td>
+            <td>{{ data1.TargetBuy }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+
+{% endblock %}

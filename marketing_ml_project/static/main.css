@@ -1,0 +1,18 @@
+.hero {
+    background: url('https://example.com/your-image.jpg') no-repeat center center;
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero h1 {
+    font-size: 4rem;
+}
+
+.content {
+    padding: 2rem 0;
+}

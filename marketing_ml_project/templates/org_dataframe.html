@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<style>
+    .table th {
+        white-space: nowrap;
+        /* Prevents text wrapping */
+    }
+</style>
+
+<table class="table table-hover mt-5">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">DemAffl</th>
+            <th scope="col">DemAge</th>
+            <th scope="col">DemClusterGroup</th>
+            <th scope="col">DemGender</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in data %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ data.ID }}</td>
+            <td>{{ data.DemAffl }}</td>
+            <td>{{ data.DemAge }}</td>
+            <td>{{ data.DemClusterGroup }}</td>
+            <td>{{ data.DemGender }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% block content %}
+ 
+<br>
+<div class= 'container'>
+    <h3>Purpose: Track profit across different deciles.</h3>
+   
+    <div>
+        {{ graph | safe }}
+    </div>
+</div>
+
+<br>
+<div class= 'container'>
+    <h3>Purpose: Visualize the cumulative distribution of good and bad outcomes.</h3>
+   
+    <div>
+        {{ graph1 | safe }}
+    </div>
+
+</div>
+
+<br>
+<div class= 'container'>
+    <h3>Purpose: Show the proportion of customers who are targeted buyers versus those who are not.</h3>
+   
+    <div>
+        {{ graph2 | safe }}
+    </div>
+
+</div>
+
+<br>
+<div class= 'container'>
+    <h3>Purpose: Analyze the relationship between spending and time spent with the brand.</h3>
+   
+    <div>
+        {{ graph3 | safe }}
+    </div>
+
+</div>
+
+<div class= 'container'>
+    <h3>Purpose: Compare spending habits across different loyalty classes.</h3>
+   
+    <div>
+        {{ graph4 | safe }}
+    </div>
+
+</div>
+
+
+<div class= 'container'>
+    <h4>Purpose: Analyze the relationship between spending habits and the probability of being a targeted buyer.
+        givem me code for this with color parameter </h4>
+   
+    <div>
+        {{ graph5 | safe }}
+    </div>
+
+</div>
+
+
+
+{% endblock %}

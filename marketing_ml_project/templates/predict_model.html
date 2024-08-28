@@ -1,0 +1,95 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+<div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-top: 20px;">
+    <table class="table table-hover">
+<thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">DemAffl</th>
+        <th scope="col">DemAge</th>
+        <th scope="col">DemClusterGroup</th>
+        <th scope="col">DemGender</th>
+        <th scope="col">DemReg</th>
+        <th scope="col">DemTVReg</th>
+        <th scope="col">LoyalClass</th>
+        <th scope="col">LoyalSpend</th>
+        <th scope="col">LoyalTime</th>
+        <th scope="col">TargetBuy</th>
+        <th scope="col">prob_0</th>
+        <th scope="col">prob_1</th>
+    </tr>
+</thead>
+<tbody>
+    {% for data in data %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ data.ID }}</td>
+        <td>{{ data.DemAffl }}</td>
+        <td>{{ data.DemAge }}</td>
+        <td>{{ data.DemClusterGroup }}</td>
+        <td>{{ data.DemGender }}</td>
+        <td>{{ data.DemReg }}</td>
+        <td>{{ data.DemTVReg }}</td>
+        <td>{{ data.LoyalClass }}</td>
+        <td>{{ data.LoyalSpend }}</td>
+        <td>{{ data.LoyalTime }}</td>
+        <td>{{ data.TargetBuy }}</td>
+        <td>{{ data.prob_0 }}</td>
+        <td>{{ data.prob_1 }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<h2>Data Insights and Visualizations</h2>
+<br><br>
+<div class= 'container'>
+    <h4>Purpose: Analyze the relationship between spending habits and the probability of being a targeted buyer.
+        </h4>
+   
+    <div>
+        {{ graph | safe }}
+    </div>
+
+</div>
+<br>
+<div class= 'container'>
+    <h4>Purpose: Analyze the impact of TV region on the probability of being a targeted buyer </h4>
+   
+    <div>
+        {{ graph1 | safe }}
+    </div>
+
+</div>
+
+
+<div class= 'container'>
+    <h4>Purpose: Visualize the cumulative probability over time to see how it builds up with customer loyalty. </h4>
+   
+    <div>
+        {{ graph2 | safe }}
+    </div>
+
+</div>
+
+<div class= 'container'>
+    <h4>Purpose: Identify age and spending ranges with higher probabilities of being targeted buyers.</h4>
+   
+    <div>
+        {{ graph3 | safe }}
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

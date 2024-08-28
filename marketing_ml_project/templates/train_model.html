@@ -1,0 +1,274 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+    <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-top: 20px;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">0</th>
+                    <th scope="col">1</th>
+                    <th scope="col">2</th>
+                    <th scope="col">3</th>
+                    <th scope="col">4</th>
+                    <th scope="col">5</th>
+                    <th scope="col">6</th>
+                    <th scope="col">7</th>
+                    <th scope="col">8</th>
+                    <th scope="col">9</th>
+                    <th scope="col">ActualOutcome</th>
+                    <th scope="col">prob_0</th>
+                    <th scope="col">prob_1</th>
+                    <th scope="col">Decile</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data1 in data %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ data1.0 }}</td>
+                    <td>{{ data1.1 }}</td>
+                    <td>{{ data1.2 }}</td>
+                    <td>{{ data1.3 }}</td>
+                    <td>{{ data1.4 }}</td>
+                    <td>{{ data1.5 }}</td>
+                    <td>{{ data1.6 }}</td>
+                    <td>{{ data1.7 }}</td>
+                    <td>{{ data1.8 }}</td>
+                    <td>{{ data1.9 }}</td>
+                    <td>{{ data1.ActualOutcome}}</td>
+                    <td>{{ data1.prob_0}}</td>
+                    <td>{{ data1.prob_1}}</td>
+                    <td>{{ data1.Decile}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="text-center">
+        <button id="getInsightButton" class="btn btn-primary btn-lg" style="margin-top: 20px;">Get Insights</button>
+    </div>
+
+
+
+   
+    <div class="container w-50 text-center mt-4">
+        <div class="container">
+            {% if profit1 != 0 %}
+                <form id="insightForm" method="POST" action="{% url 'train_model' %}" class="shadow p-4 rounded bg-light mx-auto" style="max-width: 500px;">
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <label for="revenue_per_buyer">Revenue from Successful Buyer:</label>
+                        <input type="text" id="revenue_per_buyer" name="revenue_per_buyer" class="form-control" required>
+                    </div>
+                    <div class="form-group text-center mt-3">
+                        <label for="cost_per_kit">Cost of Promotional Sample Kit:</label>
+                        <input type="text" id="cost_per_kit" name="cost_per_kit" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4 w-100">Calculate Profit</button>
+                </form>
+            {% else %}
+                <form id="insightForm" method="POST" action="{% url 'train_model' %}" class="shadow p-4 rounded bg-light mx-auto" style="max-width: 500px; display: none; margin-top: 20px;">
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <label for="revenue_per_buyer">Revenue from Successful Buyer:</label>
+                        <input type="text" id="revenue_per_buyer" name="revenue_per_buyer" class="form-control" required>
+                    </div>
+                    <div class="form-group text-center mt-3">
+                        <label for="cost_per_kit">Cost of Promotional Sample Kit:</label>
+                        <input type="text" id="cost_per_kit" name="cost_per_kit" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4 w-100">Calculate Profit</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>  
+
+   
+    {% if profit1 != 0 %}
+
+
+    <div style="max-height: 800px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-top: 20px;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Decile</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Prob_Treshold</th>
+                    <th scope="col">Good</th>
+                    <th scope="col">%Good</th>
+                    <th scope="col">Bad</th>
+                    <th scope="col">%Bad</th>
+                    <th scope="col">Cummulative_Good</th>
+                    <th scope="col">%Cummulative_Good</th>
+                    <th scope="col">Cummulative_Bad</th>
+                    <th scope="col">%Cummulative_Bad</th>
+                    <th scope="col">Profit_in_pkr</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <th>1</th>
+                    <td>{{total1}}</td>
+                    <td>{{prob_thres1}}%</td>
+                    <td>{{good_total1}}</td>
+                    <td>{{good_total_per1}}</td>
+                    <td>{{bad_total1}}</td>
+                    <td>{{bad_total_per1}}</td>
+                    <td>{{good_cumm1}}</td>
+                    <td>{{good_cumm_per1}}</td>
+                    <td>{{bad_cumm1}}</td>
+                    <td>{{bad_cumm_per1}}</td>
+                    <td>{{profit1}}</td>
+                </tr>
+
+                <tr>
+                    <th>2</th>
+                    <td>{{total2}}</td>
+                    <td>{{prob_thres2}}%</td>
+                    <td>{{good_total2}}</td>
+                    <td>{{good_total_per2}}</td>
+                    <td>{{bad_total2}}</td>
+                    <td>{{bad_total_per2}}</td>
+                    <td>{{good_cumm2}}</td>
+                    <td>{{good_cumm_per2}}</td>
+                    <td>{{bad_cumm2}}</td>
+                    <td>{{bad_cumm_per2}}</td>
+                    <td>{{profit2}}</td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td>{{total3}}</td>
+                    <td>{{prob_thres3}}%</td>
+                    <td>{{good_total3}}</td>
+                    <td>{{good_total_per3}}</td>
+                    <td>{{bad_total3}}</td>
+                    <td>{{bad_total_per3}}</td>
+                    <td>{{good_cumm3}}</td>
+                    <td>{{good_cumm_per3}}</td>
+                    <td>{{bad_cumm3}}</td>
+                    <td>{{bad_cumm_per3}}</td>
+                    <td>{{profit3}}</td>
+                </tr>
+                <tr>
+                    <th>4</th>
+                    <td>{{total4}}</td>
+                    <td>{{prob_thres4}}%</td>
+                    <td>{{good_total4}}</td>
+                    <td>{{good_total_per4}}</td>
+                    <td>{{bad_total4}}</td>
+                    <td>{{bad_total_per4}}</td>
+                    <td>{{good_cumm4}}</td>
+                    <td>{{good_cumm_per4}}</td>
+                    <td>{{bad_cumm4}}</td>
+                    <td>{{bad_cumm_per4}}</td>
+                    <td>{{profit4}}</td>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <td>{{total5}}</td>
+                    <td>{{prob_thres5}}%</td>
+                    <td>{{good_total5}}</td>
+                    <td>{{good_total_per5}}</td>
+                    <td>{{bad_total5}}</td>
+                    <td>{{bad_total_per5}}</td>
+                    <td>{{good_cumm5}}</td>
+                    <td>{{good_cumm_per5}}</td>
+                    <td>{{bad_cumm5}}</td>
+                    <td>{{bad_cumm_per5}}</td>
+                    <td>{{profit5}}</td>
+                </tr>
+                <tr>
+                    <th>6</th>
+                    <td>{{total6}}</td>
+                    <td>{{prob_thres6}}%</td>
+                    <td>{{good_total6}}</td>
+                    <td>{{good_total_per6}}</td>
+                    <td>{{bad_total6}}</td>
+                    <td>{{bad_total_per6}}</td>
+                    <td>{{good_cumm6}}</td>
+                    <td>{{good_cumm_per6}}</td>
+                    <td>{{bad_cumm6}}</td>
+                    <td>{{bad_cumm_per6}}</td>
+                    <td>{{profit6}}</td>
+                </tr>
+                <tr>
+                    <th>7</th>
+                    <td>{{total7}}</td>
+                    <td>{{prob_thres7}}%</td>
+                    <td>{{good_total7}}</td>
+                    <td>{{good_total_per7}}</td>
+                    <td>{{bad_total7}}</td>
+                    <td>{{bad_total_per7}}</td>
+                    <td>{{good_cumm7}}</td>
+                    <td>{{good_cumm_per7}}</td>
+                    <td>{{bad_cumm7}}</td>
+                    <td>{{bad_cumm_per7}}</td>
+                    <td>{{profit7}}</td>
+                </tr>
+                <tr>
+                    <th>8</th>
+                    <td>{{total8}}</td>
+
+                    <td>{{prob_thres8}}%</td>
+                    <td>{{good_total8}}</td>
+                    <td>{{good_total_per8}}</td>
+                    <td>{{bad_total8}}</td>
+                    <td>{{bad_total_per8}}</td>
+                    <td>{{good_cumm8}}</td>
+                    <td>{{good_cumm_per8}}</td>
+                    <td>{{bad_cumm8}}</td>
+                    <td>{{bad_cumm_per8}}</td>
+                    <td>{{profit8}}</td>
+                </tr>
+                <tr>
+                    <th>9</th>
+                    <td>{{total9}}</td>
+                    <td>{{prob_thres9}}%</td>
+                    <td>{{good_total9}}</td>
+                    <td>{{good_total_per9}}</td>
+                    <td>{{bad_total9}}</td>
+                    <td>{{bad_total_per9}}</td>
+                    <td>{{good_cumm9}}</td>
+                    <td>{{good_cumm_per9}}</td>
+                    <td>{{bad_cumm9}}</td>
+                    <td>{{bad_cumm_per9}}</td>
+                    <td>{{profit9}}</td>
+                </tr>
+                <tr>
+                    <th>10</th>
+                    <td>{{total10}}</td>
+                    <td>{{prob_thres10}}%</td>
+                    <td>{{good_total10}}</td>
+                    <td>{{good_total_per10}}</td>
+                    <td>{{bad_total10}}</td>
+                    <td>{{bad_total_per10}}</td>
+                    <td>{{good_cumm10}}</td>
+                    <td>{{good_cumm_per10}}</td>
+                    <td>{{bad_cumm10}}</td>
+                    <td>{{bad_cumm_per10}}</td>
+                    <td>{{profit10}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+
+</div>
+
+
+<script>
+    document.getElementById('getInsightButton').addEventListener('click', function() {
+        document.getElementById('insightForm').style.display = 'block';
+    });
+</script>
+
+
+
+
+{% endblock %}

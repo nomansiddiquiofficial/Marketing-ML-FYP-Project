@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block content %}
+
+
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #343a40;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .header {
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        background-color: #007bff;
+        color: #fff;
+        padding: 20px 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    .header h1 {
+        margin: 0;
+        font-size: 2.5em;
+    }
+    
+    .content {
+        margin-top: 20px;
+        padding: 0 20px;
+    }
+    
+    .content h2 {
+        color: #007bff;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .content p,
+    .content ul {
+        line-height: 1.8;
+    }
+    
+    .content ul {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+    
+    .footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #6c757d;
+    }
+    
+    .footer p {
+        margin: 0;
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="header">
+        <h1>About This Project</h1>
+    </div>
+    
+    <div class="content">
+        <h2>Overview</h2>
+        <p>This project aims to optimize marketing campaigns using machine learning. By predicting the probability of customer purchases, we can target the most probable buyers, thus maximizing return on investment and reducing wasted marketing efforts.</p>
+        <h2>Objectives</h2>
+        <p>The primary objectives of this project are to:</p>
+        <ul>
+            <li>Develop a machine learning model to predict purchase probabilities.</li>
+            <li>Analyze and visualize customer data to uncover insights.</li>
+            <li>Simulate marketing campaigns to evaluate different strategies.</li>
+            <li>Provide practical recommendations for marketers to implement.</li>
+        </ul>
+        <h2>Technologies Used</h2>
+        <p>The project leverages the following technologies and tools:</p>
+        <ul>
+            <li>Python for data analysis and machine learning.</li>
+            <li>Streamlit for building the interactive web application.</li>
+            <li>Pandas and NumPy for data manipulation.</li>
+            <li>Scikit-learn for machine learning modeling.</li>
+            <li>Matplotlib and Seaborn for data visualization.</li>
+        </ul>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Marketing ML FYP. All rights reserved.</p>
+    </div>
+</div>
+
+
+{% endblock %}
